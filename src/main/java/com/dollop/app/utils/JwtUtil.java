@@ -44,6 +44,7 @@ public class JwtUtil {
 	}
 
 	private String generateToken(Map<String, Object> claims, String subject, TokenType tokenType) {
+		System.err.println(new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(9)));
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(tokenType.equals(TokenType.AUTH_TOKEN)
 						? new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(5))

@@ -45,8 +45,11 @@ public class SecurityConfig {
 
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
 		return http.csrf(csrf -> csrf.disable()) // Disable CSRF
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/user/insert","/user/login","/user/verifyOtp").permitAll() // Public endpoint
+				.authorizeHttpRequests(auth -> auth
+						.requestMatchers("/user/insert", "/user/login", "/user/verifyOtp", "/event/create/**").permitAll() // Public
+																														// endpoint
 						.requestMatchers("/user/showUsers").hasAuthority("Admin") // Restricted to Admin role
 						.anyRequest().authenticated() // All other requests require authentication
 				).exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint) // Custom

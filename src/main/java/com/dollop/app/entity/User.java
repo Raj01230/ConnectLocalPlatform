@@ -26,9 +26,9 @@ public class User extends Auditable {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private String id;
 	private String name;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "location_id_fk")
-	private MapLocation location;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "location_id_fk")
+	private String location;
 	@Column(unique = true)
 	private String email;
 	private String password;

@@ -26,7 +26,9 @@ public class InvalidUserAthenticationPoint implements AuthenticationEntryPoint {
 
 		// Retrieve stored exception from the request attribute
 		Exception exception = (Exception) request.getAttribute("exception");
+		System.err.println("SecurityFilter applied on: " + request.getRequestURI());
 
+		System.err.println(authException);
 		int status = HttpServletResponse.SC_UNAUTHORIZED;
 	
 		String message = "Token Expired!";

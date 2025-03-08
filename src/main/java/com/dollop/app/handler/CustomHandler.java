@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,12 +33,12 @@ import jakarta.validation.ConstraintViolationException;
 @RestControllerAdvice
 
 public class CustomHandler {
-//	@ExceptionHandler(DepartmentNotFoundException.class)
-//	public ErrorResponse name(DepartmentNotFoundException ex) {
-//		return new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
-//		
-//	}
-//	
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public ErrorResponse name(HttpMessageNotReadableException ex) {
+		return new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
+		
+	}
+	
 	@ExceptionHandler(UserAlreadyExistsException.class)
 	public ErrorResponse name(UserAlreadyExistsException ex) {
 		return new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
